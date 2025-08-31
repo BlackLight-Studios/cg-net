@@ -160,8 +160,8 @@ elseif args[1] == "update" then
     end
 else
     print("Usage: ")
-    print("pacg <list>")
-    print("pacg <list> [package]")
+    print("pacg <list> -Lists the entire Nexus' repository.")
+    print("pacg <list> [package] -Prints out the details of a specific package.")
     print("pacg <install> [package1] [package2]...")
     print("pacg <remove> [package1] [package2]...")
     print("pacg <update> [package1] [package2]...")
