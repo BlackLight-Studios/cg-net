@@ -4,6 +4,46 @@ local networkmanager = require("networkmanager")
 local args = {...}
 local pacgPath = "/bin/pacg"
 local binariesPath = "/bin"
+local nexusFile
+
+local function writeFiles(pkg, installFiles, updater)
+    for packetName, file in pairs(installFiles.files) do
+        if fs.exists(fs.combine(binariesPath, pkg, file)) and updater then
+            fs.delete(fs.combine(binariesPath, pkg, file))
+        end
+            local w, h = term.getSize()
+            local maxBarWidth = w - string.len(packetName) - 8
+            local progress = 0
+            local percent = math.floor(progress/installFiles.size * 100)
+            local filledBarWidth = math.floor(percent/100 * maxBarWidth)
+            local x, y = term.getCursorPos()
+            local dirName = string.gsub(installFiles.executable,".lua", "")
+            local path = fs.combine(binariesPath, dirName)
+            term.setCursorPos(1, y)
+            local iX, iY = term.getCursorPos()
+                while progress < installFiles.size do
+                    term.setCursorPos(iX, iY)
+                    print(packetName.." ["..string.rep("#",filledBarWidth)..string.rep("-",maxBarWidth-filledBarWidth).."] "..percent.."%")
+                    progress = progress + math.random(1, installFiles.size/2)
+                    percent = math.floor(progress/installFiles.size * 100)
+                    filledBarWidth = math.floor(percent/100 * maxBarWidth)
+                    os.sleep(math.random(1,2))
+                end
+                if not fs.exists(path) then
+                    fs.makeDir(path)
+                end
+                if installFiles.executable ~= pkg..".lua" then
+                    local f = fs.open(fs.combine(binariesPath,dirName,file), "w+")
+                    f.write(file)
+                    f.close()
+                else
+                    local executable = installFiles.executable
+                    local f = fs.open(fs.combine(binariesPath,executable), "w")
+                    f.write(file)
+                    f.close()
+                end
+            end
+end
 
 if args[1] == "list" then
     if not args[2] then
@@ -48,39 +88,7 @@ elseif args[1] == "install" then
             local manifestTable = installFiles.manifest
             if type(installFiles) == "table" then
                 print("Installing "..installFiles.package..", size of: "..math.floor((installFiles.size/1024)).." MB")
-                for packetName, file in pairs(installFiles.files) do
-                    local w, h = term.getSize()
-                    local maxBarWidth = w - string.len(packetName) - 8
-                    local progress = 0
-                    local percent = math.floor(progress/installFiles.size * 100)
-                    local filledBarWidth = math.floor(percent/100 * maxBarWidth)
-                    local x, y = term.getCursorPos()
-                    local dirName = string.gsub(installFiles.executable,".lua", "")
-                    local path = fs.combine(binariesPath, dirName)
-                    term.setCursorPos(1, y)
-                    local iX, iY = term.getCursorPos()
-                        while progress < installFiles.size do
-                            term.setCursorPos(iX, iY)
-                            print(packetName.." ["..string.rep("#",filledBarWidth)..string.rep("-",maxBarWidth-filledBarWidth).."] "..percent.."%")
-                            progress = progress + math.random(1, installFiles.size/2)
-                            percent = math.floor(progress/installFiles.size * 100)
-                            filledBarWidth = math.floor(percent/100 * maxBarWidth)
-                            os.sleep(math.random(1,2))
-                        end
-                        if not fs.exists(path) then
-                            fs.makeDir(path)
-                        end
-                        if installFiles.executable ~= pkg..".lua" then
-                            local f = fs.open(fs.combine(binariesPath,dirName, "w+"))
-                            f.write(file)
-                            f.close()
-                        else
-                            local executable = installFiles.executable
-                            local f = fs.open(fs.combine(binariesPath,executable), "w")
-                            f.write(file)
-                            f.close()
-                        end
-                end
+                    writeFiles(pkg, installFiles, false)
                     if not fs.exists(fs.combine(binariesPath,pkg,"manifest.json")) then
                         local file = fs.open(fs.combine(binariesPath,pkg,"manifest.json"),"w")
                         file.write(textutils.serialiseJSON(manifestTable))
@@ -125,50 +133,16 @@ elseif args[1] == "update" then
             networkmanager.send("$REQUEST_PACKETS:client", {action="install", package=pkg})
             local installFiles = networkmanager.repo()
             local manifestTable = installFiles.manifest
-            local version
+            local PCversion
             if fs.exists(fs.combine(binariesPath,pkg,"manifest.json")) then
                     local file = fs.open(fs.combine(binariesPath,pkg,"manifest.json"),"r")
-                    version = textutils.unserialiseJSON(file.readAll())
+                    PCversion = textutils.unserialiseJSON(file.readAll())
                     file.close()
             end
             if type(installFiles) == "table" then
-                if manifestTable.version ~= version.version then
-                local n = 0
-                print("Updating binary "..installFiles.package..", size of: "..(installFiles.size/1024).." MB")
-                for packetName, file in ipairs(installFiles.files) do
-                    if fs.exists(fs.combine(binariesPath, pkg, file)) then
-                        fs.delete(fs.combine(binariesPath, pkg, file))
-                    end
-                    local w, h = term.getSize()
-                    local maxBarWidth = w - string.len(packetName) - 8
-                    local progress = 1
-                    local percent = math.floor(progress/installFiles.size * 100)
-                    local filledBarWidth = math.floor(percent/100 * maxBarWidth)
-                    local x, y = term.getCursorPos()
-                    local path = fs.combine(binariesPath, installFiles.package)
-                    local filePath = fs.combine(path, file)
-                    term.setCursorPos(1, y+n)
-                        while progress < installFiles.size do
-                            print(packetName.." ["..string.rep("#",filledBarWidth)..string.rep("-",maxBarWidth-filledBarWidth).."] "..percent.."%")
-                            progress = progress + math.random(1, installFiles.size-progress)
-                            percent = math.floor(progress/installFiles.size * 100)
-                            filledBarWidth = math.floor(percent/100 * maxBarWidth)
-                            os.sleep(math.random(1,2))
-                        end
-                        if not fs.exists(path) then
-                            fs.makeDir(path)
-                        end
-                        if installFiles.executable ~= pkg..".lua" then
-                            local f = fs.open(filePath, "w+")
-                            f.write(file)
-                            file.close()
-                        else
-                            local f = fs.open(fs.combine(binariesPath,installFiles.executable), "w")
-                            f.write(file)
-                            f.close()
-                        end
-                    n = n + 1
-                end
+                if manifestTable.version ~= PCversion.version then
+                print("Updating "..installFiles.package..", size of: "..math.floor((installFiles.size/1024)).." MB")
+                    writeFiles(pkg, installFiles, true)
                     if fs.exists(fs.combine(binariesPath,pkg,"manifest.json")) then
                         local file = fs.open(fs.combine(binariesPath,pkg,"manifest.json"),"w+")
                         file.write(textutils.serialiseJSON(manifestTable))
@@ -185,6 +159,10 @@ elseif args[1] == "update" then
         end
     end
 else
-    print("Usage: pacg <list|install|remove|update> [package]")
+    print("Usage: ")
+    print("pacg <list>")
+    print("pacg <list> [package]")
+    print("pacg <install> [package1] [package2]...")
+    print("pacg <remove> [package1] [package2]...")
+    print("pacg <update> [package1] [package2]...")
 end
-
