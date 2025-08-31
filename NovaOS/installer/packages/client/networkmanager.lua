@@ -1,11 +1,3 @@
---[[
- local queue is a dictionary with nested tables:
- local queue = {
-    [protocol1] = {{table1}, {table2}, ...}
-    [protocol2] = {{table1}, {table2}, ...}
-    ...
- }
---]]
 
 --[[
  local queue is a dictionary with nested tables:
@@ -31,6 +23,19 @@ networkmanager.openRednet = function()
                 return true
             else
                 return nil
+            end
+        end
+    end
+end
+
+networkmanager.isModemOnline = function()
+    local sides = {"left", "right", "top", "bottom", "back", "front"}
+    for _, side in ipairs(sides) do
+        if peripheral.getType(side) == "modem" then
+            if rednet.isOpen(side) then
+                return true
+            else
+                return false
             end
         end
     end
@@ -94,6 +99,9 @@ networkmanager.searchModem = function()
 end
 
 networkmanager.searchNode = function(timeout)
+    if not networkmanager.isModemOnline() then
+        return false
+    end
     timeout = timeout or 3
     timeout = timeout * 1000
     rednet.broadcast("", "$DISCOVER")
@@ -110,6 +118,9 @@ networkmanager.searchNode = function(timeout)
 end
 
 networkmanager.getInbox = function()
+    if not networkmanager.isModemOnline() then
+        return false
+    end
     local emails = {}
     local msg = networkmanager.getMessage("$RELAY_EMAIL")
     while msg do
@@ -123,6 +134,9 @@ networkmanager.getInbox = function()
 end
 
 networkmanager.repo = function(timeout)
+    if not networkmanager.isModemOnline() then
+        return false
+    end
     timeout = timeout or 3
     timeout = timeout * 1000
     local start = os.epoch("local")
@@ -153,6 +167,9 @@ networkmanager.setDefaultNode = function(id)
 end
 
 networkmanager.send = function(protocol, data, id)
+    if not networkmanager.isModemOnline() then
+        return false
+    end
     local defaultNodePath = "/sys/networking/.defaultNode.json"
     local defaultNode = nil
     if fs.exists(defaultNodePath) then
@@ -170,6 +187,9 @@ networkmanager.send = function(protocol, data, id)
 end
 
 networkmanager.requestEmails = function(email,timeout)
+    if not networkmanager.isModemOnline() then
+        return false
+    end
     timeout = timeout or 3
     timeout = timeout * 1000
     local start = os.epoch("local")
@@ -190,6 +210,9 @@ networkmanager.requestEmails = function(email,timeout)
 end
 
 networkmanager.receive = function(protocol, timeout)
+    if not networkmanager.isModemOnline() then
+        return false
+    end
     timeout = timeout or 3
     timeout = timeout * 1000
     local start = os.epoch("local")

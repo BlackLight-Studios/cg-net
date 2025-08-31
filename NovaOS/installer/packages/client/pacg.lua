@@ -1,6 +1,11 @@
 package.path = package.path .. ";/sys/networking/?.lua"
 local networkmanager = require("networkmanager")
 
+if not networkmanager.isModemOnline() then
+    print("Modem is not online.")
+    return
+end
+
 local args = {...}
 local pacgPath = "/bin/pacg"
 local binariesPath = "/bin"
@@ -166,3 +171,4 @@ else
     print("pacg <remove> [package1] [package2]...")
     print("pacg <update> [package1] [package2]...")
 end
+
