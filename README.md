@@ -1,5 +1,5 @@
 # CG-NET and Networking
-### a collection of scripts and simple/small OSes for [CC:Tweaked](https://modrinth.com/mod/cc-tweaked) (on Minecraft)
+### a collection of scripts and simple/small OSes for [CC: Tweaked](https://modrinth.com/mod/cc-tweaked) (on Minecraft)
 
 ## About this collection:
 
@@ -18,4 +18,25 @@ NodeOS is based on NexusOS and is the OS for the Proxies (or relays... or repeat
 ### NovaOS
 NovaOS was the last OS I made and it's the base system for the clients. It's more graphically pleasing than the previous 2 OSes (as it's more intended for "daily" use) and comes with a similar kernel.lua file, a built-in networkmanager.lua api that *should* have everything you need, just in case you can add stuff based on your needs... - it comes with a Netman app (yes, it's networkmanager but with 'work' and 'ager' cut off), that is used to search for a modem attached to the PC and open rednet on that modem, and is also used to search for a nearby Node and give options of which one to connect to (if there are more accessible ones in the area covered by the modem's range). It also has a package manager! Used with 'pacg' and it's used to install packages from the main Nexus.
 
-:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3
+:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3
+
+## How to Install:
+
+### NexusOS
+There are two ways of installing NexusOS and NodeOS, first one is to either use the pastebin command for each OS, or use the pastebin command to download both installers and carry them inside a disk so to be able to install either system on the go.
+They are easy to install, first download the version you need, paste it into the terminal, execute and then execute the installed file, it should prompt you if you want to install it and... that's it.
+**NexusOS**
+`pastebin get qua nome file`
+**NodeOS**
+`pastebin qua`
+**Disk**
+ `pastebin qua`
+
+### NovaOS
+NovaOS works the same way, there's the installer for the Desktop version, the Portable version and one for the disk.
+**Desktop**
+`pastebin qua`
+**Portable**
+`pastebin qua`
+**Disk**
+ `pastebin qua`
