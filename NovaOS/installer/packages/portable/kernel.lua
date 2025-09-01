@@ -1,6 +1,5 @@
 package.path = package.path .. ";/sys/networking/networkmanager.lua"
 local networkmanager = require("networkmanager")
-local backgroundServicesPath = "/etc/backgroundservices.json"
 
 local sysPath = fs.open("/sys/.sysver.json", "r")
 local sysFile = sysPath.readAll()
