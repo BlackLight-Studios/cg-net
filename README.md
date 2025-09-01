@@ -28,17 +28,24 @@ They are easy to install, first download the version you need, paste it into the
 
 **NexusOS**
 `pastebin get qua nome file`
+
 **NodeOS**
 `pastebin qua`
+
 **Disk**
  `pastebin qua`
+ 
 
 ### NovaOS
 NovaOS works the same way, there's the installer for the Desktop version, the Portable version and one for the disk.
 
 **Desktop**
 `pastebin qua`
+
 **Portable**
 `pastebin qua`
+
 **Disk**
  `pastebin qua`
+ 
+
