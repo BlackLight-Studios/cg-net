@@ -44,7 +44,7 @@ NovaOS works the same way, there's the installer for the Desktop version, the Po
 `pastebin get nHwtR3PU nodeosinstaller.lua`
 
 **Portable**
-`pastebin get Ej5YLWKk portableinstaller.lua`
+`pastebin get vFUaE5pG portableinstaller.lua`
 
 **Disk**
  `pastebin get hNWAcL4D novadisk.lua`
