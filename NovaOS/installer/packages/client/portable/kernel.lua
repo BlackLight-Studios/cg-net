@@ -48,6 +48,10 @@ local function background()
     -- add them like this: ["service.lua","service2.lua"]
     -- add services to a "while true" loop if you need to, if you have a while true loop inside the service already you don't need one here
     -- use multishell or openTab to open multiple tabs
+    local netman = shell.openTab("/bin/netman.lua")
+    shell.switchTab(netman)
+    multishell.setTitle(netman, "netman")
+    
     local file = nil
     if backgroundServicesPath then
         file = fs.open(backgroundServicesPath, "r")

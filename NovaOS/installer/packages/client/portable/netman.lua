@@ -15,10 +15,12 @@ local function editAuto()
 end
 
 local function search()
-    if autoSearch then
+    while autoSearch do
         local nodes = networkmanager.searchNode(3)
             if #nodes > 0 then
                 networkmanager.setDefaultNode(nodes[1])
+            else
+                networkmanager.setDefaultNode(nil)
             end
         os.sleep(300)
     end
