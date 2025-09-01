@@ -81,7 +81,7 @@ local generalWaitTime = 6
             if userID ~= nil then
                 rednet.send(userID, "Knock... Knock!", "$PING")
                 log.Info("Pinging PC with ID: "..userID)
-                local senderID, receivedData = rednet.receive("$PING:ping",generalWaitTime)
+                local senderID, receivedData = rednet.receive("$PONG",generalWaitTime)
                 if senderID == userID and receivedData == "Who's there?" then
                     rednet.send(id, "Granted", "$IS_ONLINE:node")
                     log.Info("Relay granted to parent")

@@ -66,7 +66,7 @@ networkmanager.listener = function()
                 file.close()
             else
                 if content == "Knock... Knock!" then
-                    rednet.send(id, "Who's there?", "$PING:ping")
+                    rednet.send(id, "Who's there?", "$PONG")
                 end
             end
         end
