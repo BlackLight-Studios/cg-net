@@ -25,6 +25,7 @@ NovaOS was the last OS I made and it's the base system for the clients. It's mor
 ### NexusOS
 There are two ways of installing NexusOS and NodeOS, first one is to either use the pastebin command for each OS, or use the pastebin command to download both installers and carry them inside a disk so to be able to install either system on the go.
 They are easy to install, first download the version you need, paste it into the terminal, execute and then execute the installed file, it should prompt you if you want to install it and... that's it.
+
 **NexusOS**
 `pastebin get qua nome file`
 **NodeOS**
@@ -34,6 +35,7 @@ They are easy to install, first download the version you need, paste it into the
 
 ### NovaOS
 NovaOS works the same way, there's the installer for the Desktop version, the Portable version and one for the disk.
+
 **Desktop**
 `pastebin qua`
 **Portable**
