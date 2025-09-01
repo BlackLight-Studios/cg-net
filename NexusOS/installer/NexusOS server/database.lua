@@ -6,7 +6,7 @@ local log = require("logger")
 
 local database = {}
     database.saveEmailJSON = function(destEmail, mailData)
-    local dbDirs = "/sys/db/users"
+    local dbDirs = "/var/db/users"
     local userDir = fs.combine(dbDirs, destEmail)
         if not fs.exists(userDir) then
             fs.makeDir(userDir)
@@ -29,7 +29,7 @@ local database = {}
     end
 
     database.readEmailsJSON = function(userEmail)
-        local dbDir = "/sys/db/users"
+        local dbDir = "/var/db/users"
         local userDir = fs.combine(dbDir, userEmail)
         local emailList = {}
 
@@ -68,7 +68,7 @@ local database = {}
 
     database.saveIndexJSON = function(userEmail, nodeID)
         nodeIndex[userEmail] = nodeID
-        local indexPath = ("/sys/db/nodeIndex.json")
+        local indexPath = ("/var/db/nodeIndex.json")
         if not fs.exists(indexPath) then
             local file = fs.open(indexPath, "w")
                 file.write(textutils.serializeJSON(nodeIndex))
@@ -83,7 +83,7 @@ local database = {}
     end
 
     database.loadIndexJSON = function()
-        local indexPath = ("/sys/db/nodeIndex.json")
+        local indexPath = ("/var/db/nodeIndex.json")
         if fs.exists(indexPath) then
             local file = fs.open(indexPath, "r")
             if file then

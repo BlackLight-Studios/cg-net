@@ -6,7 +6,7 @@ local log = require("logger")
 local database = {}
 
     database.saveIndexJSON = function()
-        local indexPath = ("/sys/db/userIndex.json")
+        local indexPath = ("/var/db/userIndex.json")
         if not fs.exists(indexPath) then
             local file = fs.open(indexPath, "w")
                 file.write(textutils.serializeJSON(userIndex))
@@ -20,7 +20,7 @@ local database = {}
     end
 
     database.loadIndexJSON = function()
-        local indexPath = ("/sys/db/userIndex.json")
+        local indexPath = ("/var/db/userIndex.json")
         if fs.exists(indexPath) then
             local file = fs.open(indexPath, "r")
             if file then
