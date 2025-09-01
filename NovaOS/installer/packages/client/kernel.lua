@@ -41,36 +41,16 @@ local function shellLoop()
     end
 end
 
-local backgroundServices = {}
-
 local function background()
     -- add services you wanna have in background in the /etc/backgroundservices.json file! 
     -- add them like this: ["service.lua","service2.lua"]
     -- add services to a "while true" loop if you need to, if you have a while true loop inside the service already you don't need one here
     -- use multishell or openTab to open multiple tabs
-    local file = nil
-    if backgroundServicesPath then
-        file = fs.open(backgroundServicesPath, "r")
-    else
-        file = fs.open("/etc/backgroundservices.json", "w")
-        file.write("[]")
-        file.close()
-        file = fs.open("/etc/backgroundservices.json", "w")
-    end
-    if file then
-        local content = textutils.unserialiseJSON(file.readAll())
-        if content ~= "" then
-            for _, service in ipairs(content) do
-                table.insert(backgroundServices, function() shell.run(service) end)
-            end
-        end
-    end
+    --[[ example V
+    local name = shell.openTab("path")
+    shell.switchTab(name)
+    multishell.setTitle(name, "title")
+    --]]
 end
 
-background()
-
-if backgroundServices ~= {} then
-    parallel.waitForAll(shellLoop, table.unpack(backgroundServices), networkmanager.listener)
-else
-    parallel.waitForAll(shellLoop, networkmanager.listener)
-end
+parallel.waitForAll(shellLoop, networkmanager.listener, background)

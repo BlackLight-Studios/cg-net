@@ -41,8 +41,6 @@ local function shellLoop()
     end
 end
 
-local backgroundServices = {}
-
 local function background()
     -- add services you wanna have in background in the /etc/backgroundservices.json file! 
     -- add them like this: ["service.lua","service2.lua"]
@@ -51,30 +49,6 @@ local function background()
     local netman = shell.openTab("/bin/netman.lua")
     shell.switchTab(netman)
     multishell.setTitle(netman, "netman")
-    
-    local file = nil
-    if backgroundServicesPath then
-        file = fs.open(backgroundServicesPath, "r")
-    else
-        file = fs.open("/etc/backgroundservices.json", "w")
-        file.write("[]")
-        file.close()
-        file = fs.open("/etc/backgroundservices.json", "w")
-    end
-    if file then
-        local content = textutils.unserialiseJSON(file.readAll())
-        if content ~= "" then
-            for _, service in ipairs(content) do
-                table.insert(backgroundServices, function() shell.run(service) end)
-            end
-        end
-    end
 end
 
-background()
-
-if backgroundServices ~= {} then
-    parallel.waitForAll(shellLoop, table.unpack(backgroundServices), networkmanager.listener)
-else
-    parallel.waitForAll(shellLoop, networkmanager.listener)
-end
+parallel.waitForAll(shellLoop, networkmanager.listener, background)
