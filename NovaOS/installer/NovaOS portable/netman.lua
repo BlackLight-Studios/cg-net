@@ -17,7 +17,7 @@ end
 local function search()
     while autoSearch do
         local nodes = networkmanager.searchNode(3)
-            if #nodes > 0 then
+            if type(nodes) == "table" and #nodes > 0 then
                 networkmanager.setDefaultNode(nodes[1])
             else
                 networkmanager.setDefaultNode(nil)
