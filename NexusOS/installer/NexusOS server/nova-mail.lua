@@ -234,7 +234,7 @@ local function viewMail(readMails, index, oldMailsPath)
             return readMails
         elseif key == keys.r then
             local replyUser = mail.from
-            sendEmail(replyUser)
+            sendEmail(replyUser, mail.subject)
         end
     end
 end
