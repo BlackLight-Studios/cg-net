@@ -47,6 +47,6 @@ NovaOS works the same way, there's the installer for the Desktop version, the Po
 `pastebin get p4DDpb9F portableinstaller.lua`
 
 **Disk**
- `pastebin get C8Za0pSi novadisk.lua`
+ `pastebin get Ef1W0AbU novadisk.lua`
  
 
