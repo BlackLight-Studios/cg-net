@@ -62,7 +62,7 @@ local function fixSystem()
         print("MISSING KERNEL! Copying file from diskette.")
     end
 end
-        local source = "disk/packages/client/"
+        local source = "disk/packages/"
         local files = {
         ["sysver.json"] = "/sys/.sysver.json",
         ["networkmanager.lua"] = "/sys/networking/networkmanager.lua",

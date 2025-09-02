@@ -37,7 +37,7 @@ if not sys then
 
     if fs.exists("/startup.lua") then fs.delete("/startup.lua") end
 
-    local source = "disk/packages/client/"
+    local source = "disk/packages/"
     local files = {
         ["startup.lua"] = "/startup.lua",
         ["kernel.lua"] = "/sys/kernel.lua",
