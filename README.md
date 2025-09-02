@@ -28,25 +28,25 @@ There are two ways of installing NexusOS and NodeOS, first one is to either use 
 It's easy to install, first copy the pastebin of the version you need, paste it into the terminal, execute it and then execute the installed file, it should prompt you if you want to install it and after it's completed you can **remove the pastebin file** and then... that's it.
 
 **NexusOS**
-`pastebin get n619TwcC nexusosinstaller.lua`
+`pastebin get EyGRsuzb nexusosinstaller.lua`
 
 **NodeOS**
-`pastebin get RTDAZeT2 nodeosinstaller.lua`
+`pastebin get XHeuL7ra nodeosinstaller.lua`
 
 **Disk**
- `pastebin get Bq8SA1v9 nexusdisk.lua`
+ `pastebin get ULdVt1d2 nexusdisk.lua`
  
 
 ### NovaOS
 NovaOS works the same way, there's the installer for the Desktop version, the Portable version and one for the disk.
 
 **Desktop**
-`pastebin get nHwtR3PU nodeosinstaller.lua`
+`pastebin get 73Rj4PMe nodeosinstaller.lua`
 
 **Portable**
-`pastebin get vFUaE5pG portableinstaller.lua`
+`pastebin get p4DDpb9F portableinstaller.lua`
 
 **Disk**
- `pastebin get hNWAcL4D novadisk.lua`
+ `pastebin get C8Za0pSi novadisk.lua`
  
 
