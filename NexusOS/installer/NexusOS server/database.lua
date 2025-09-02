@@ -147,10 +147,12 @@ local database = {}
         local packetFiles = {}
         local repoPath = "/repo/packages"
         local packagePath = fs.combine(repoPath, package .. "/packets")
+        local size = 0
             if fs.exists(packagePath) then
                 local files = fs.list(packagePath)
                 for _, packet in ipairs(files) do
                     local filePath = fs.combine(packagePath, packet)
+                    size = size + fs.getSize(filePath)
                     if not fs.isDir(filePath) then
                         local file = fs.open(filePath, "r")
                         if file then
@@ -169,7 +171,7 @@ local database = {}
                 return textutils.serializeJSON({
                     package = package,
                     files = packetFiles,
-                    size = fs.getSize(packagePath),
+                    size = size,
                     manifest = manifest,
                     executable = manifest.executable
                 })
