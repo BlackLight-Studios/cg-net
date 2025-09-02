@@ -46,9 +46,9 @@ NovaOS works the same way, there's the installer for the Desktop version, the Po
 **Portable**
 `pastebin get p4DDpb9F portableinstaller.lua`
 
-## Every release in this project is to be considered "pre-release", there are many bugs, I'll try to fix them asap.
-
 **Disk**
  `pastebin get Ef1W0AbU novadisk.lua`
+
+ ## Every release in this project is to be considered "pre-release", there are many bugs, I'll try to fix them asap.
  
 
