@@ -34,7 +34,7 @@ It's easy to install, first copy the pastebin of the version you need, paste it 
 `pastebin get XHeuL7ra nodeosinstaller.lua`
 
 **Disk**
- `pastebin get ULdVt1d2 nexusdisk.lua`
+ `pastebin get qN6qdX9w nexusdisk.lua`
  
 
 ### NovaOS
@@ -47,6 +47,6 @@ NovaOS works the same way, there's the installer for the Desktop version, the Po
 `pastebin get p4DDpb9F portableinstaller.lua`
 
 **Disk**
- `pastebin get C8Za0pSi novadisk.lua`
+ `pastebin get Ef1W0AbU novadisk.lua`
  
 
