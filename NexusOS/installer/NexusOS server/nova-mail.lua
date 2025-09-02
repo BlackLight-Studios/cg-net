@@ -120,7 +120,6 @@ local function sendEmail(replyUser, replySubject)
             subject = "re: "..replySubject
             fields[2].value = "re: "..replySubject
         end
-        local file = fs.open(appPath, "w")
     while true do
         drawForm()
         local e, k = os.pullEvent("key")
