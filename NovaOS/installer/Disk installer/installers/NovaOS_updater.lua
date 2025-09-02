@@ -1,4 +1,4 @@
-local diskPath = "disk/packages/client/sysver.json"
+local diskPath = "disk/packages/sysver.json"
 local diskFile = fs.open(diskPath, "r")
 local diskTable = textutils.unserializeJSON(diskFile.readAll())
 local diskVer = diskTable.version
