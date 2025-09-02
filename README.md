@@ -41,12 +41,14 @@ It's easy to install, first copy the pastebin of the version you need, paste it 
 NovaOS works the same way, there's the installer for the Desktop version, the Portable version and one for the disk.
 
 **Desktop**
-`pastebin get 73Rj4PMe nodeosinstaller.lua`
+`pastebin get 73Rj4PMe novaosinstaller.lua`
 
 **Portable**
 `pastebin get p4DDpb9F portableinstaller.lua`
 
 **Disk**
  `pastebin get Ef1W0AbU novadisk.lua`
+
+ ## Every release in this project is to be considered "pre-release", there are many bugs, I'll try to fix them asap.
  
 
