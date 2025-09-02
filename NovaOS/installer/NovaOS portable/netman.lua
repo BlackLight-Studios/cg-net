@@ -20,7 +20,7 @@ local function search()
             if type(nodes) == "table" and #nodes > 0 then
                 networkmanager.setDefaultNode(nodes[1])
             else
-                networkmanager.setDefaultNode(nil)
+                networkmanager.setDefaultNode("nil")
             end
         os.sleep(300)
     end
