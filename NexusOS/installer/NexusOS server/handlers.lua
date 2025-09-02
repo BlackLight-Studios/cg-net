@@ -64,7 +64,7 @@ local generalWaitTime = 6
 
 -- pacg <list|install|remove|update> <package>
 
-    handler.getPackets = function(userEmail, inputData, nodeID)
+    handler.getPackets = function(inputData, nodeID)
         local action = inputData.action
         local package = nil
         if inputData.package ~= nil then
