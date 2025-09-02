@@ -40,16 +40,16 @@ while true do
     elseif key == keys.enter then
         if selected == 1 then
             term.clear()
-            shell.run("/disk/installers/NexusOS_Installer.lua")
+            shell.run("/disk/installers/NexusOS_installer.lua")
         elseif selected == 2 then
             term.clear()
-            shell.run("/disk/installers/NexusOS_Updater.lua")
+            shell.run("/disk/installers/NexusOS_updater.lua")
         elseif selected == 3 then
             term.clear()
-            shell.run("/disk/installers/NodeOS_Installer.lua")
+            shell.run("/disk/installers/NodeOS_installer.lua")
         elseif selected == 4 then
             term.clear()
-            shell.run("/disk/installers/NodeOS_Updater.lua")
+            shell.run("/disk/installers/NodeOS_updater.lua")
         end
         break
     end
