@@ -20,7 +20,9 @@ local hop = config.hop
 
 if not parentID then
     parentID, hop = handler.getParent()
-    database.saveConfigJSON()
+    if parentID and hop then
+        database.saveConfigJSON()
+    end
 end
 
 
