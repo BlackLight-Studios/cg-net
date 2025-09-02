@@ -1,6 +1,5 @@
 local options = {
     "NovaOS for client",
-    "NovaOS for portables",
     "Fix / Update NovaOS",
     "Uninstall NovaOS",
 }
@@ -59,11 +58,8 @@ while true do
             shell.run("/disk/installers/NovaOS_installer.lua")
         elseif selected == 2 then
             term.clear()
-            shell.run("/disk/installers/NovaOS_portable.lua")
-        elseif selected == 3 then
-            term.clear()
             shell.run("/disk/installers/NovaOS_updater.lua")
-        elseif selected == 4 then
+        elseif selected == 3 then
             term.clear()
             shell.run("/disk/installers/uninstaller.lua")
         end
